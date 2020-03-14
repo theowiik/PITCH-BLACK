@@ -35,4 +35,6 @@ func _unhandled_input(event) -> void:
 		get_tree().set_input_as_handled()
 
 	if event.is_action_pressed("add_rocket"):
+		controlling = false
 		emit_signal("rocket_added")
+		get_tree().set_input_as_handled()

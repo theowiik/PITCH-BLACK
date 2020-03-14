@@ -2,14 +2,13 @@ extends Area2D
 
 class_name Projectile
 
-var dir_vector = Vector2(1, 1)
-const speed = 200;
+var dir_vector: Vector2 = Vector2(0, 0)
+const speed: int = 200;
 
 func _ready():
-	var m: Vector2 = get_global_mouse_position()
-	dir_vector = Vector2(
-					m.x - global_position.x,
-					m.y - global_position.y).normalized()
+	var m = get_global_mouse_position()
+	var c_pos = global_position
+	dir_vector = Vector2(m.x - c_pos.x, m.y - c_pos.y).normalized()
 
 func _physics_process(delta):
 	transform = transform.translated(dir_vector * speed * delta)
