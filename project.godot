@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Projectile",
 "language": "GDScript",
 "path": "res://scripts/Projectile.gd"
+}, {
+"base": "Area2D",
+"class": "Rocket",
+"language": "GDScript",
+"path": "res://scripts/Rocket.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
-"Projectile": ""
+"Projectile": "",
+"Rocket": ""
 }
 
 [application]
@@ -60,6 +66,11 @@ right={
 shoot={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+add_rocket={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

@@ -2,10 +2,13 @@ extends KinematicBody2D
 
 class_name Actor
 
+var controlling: bool = true;
+
 const movement_speed: int = 100
 const projectile: PackedScene = preload("res://scenes/Projectile.tscn")
 
 signal shoot
+signal rocket_added
 
 func _process(_delta) -> void:
 	move_and_slide(get_input_vector() * movement_speed)
@@ -22,9 +25,14 @@ func get_input_vector() -> Vector2:
 	return vec.normalized()
 
 func _unhandled_input(event) -> void:
+	if not controlling: return
+
 	if event.is_action_pressed("shoot"):
 		var proj: Projectile = projectile.instance()
 		proj.global_position = global_position
 		print("wasd")
 		emit_signal("shoot", proj)
 		get_tree().set_input_as_handled()
+
+	if event.is_action_pressed("add_rocket"):
+		emit_signal("rocket_added")
