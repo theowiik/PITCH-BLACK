@@ -7,8 +7,7 @@ const speed: int = 200;
 
 func _ready():
 	var m = get_global_mouse_position()
-	var c_pos = global_position
-	dir_vector = Vector2(m.x - c_pos.x, m.y - c_pos.y).normalized()
+	dir_vector = global_position.direction_to(m).normalized()
 
 func _physics_process(delta):
 	transform = transform.translated(dir_vector * speed * delta)

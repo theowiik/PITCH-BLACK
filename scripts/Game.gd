@@ -1,7 +1,7 @@
 extends Node2D
 
 const rocket: PackedScene = preload("res://scenes/Rocket.tscn")
-onready var player: Actor = get_node("Actor")
+onready var player: Actor = get_node("Player")
 onready var camera: Camera2D = get_node("Camera")
 
 func _ready() -> void:
