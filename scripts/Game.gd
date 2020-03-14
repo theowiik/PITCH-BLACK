@@ -17,6 +17,7 @@ func on_rocket_added() -> void:
 	var instance = rocket.instance()
 	player.remove_child(camera)
 	instance.add_child(camera)
+	instance.global_position = player.global_position
 	instance.connect("exploded", self, "on_rocket_exploded")
 	add_child(instance)
 

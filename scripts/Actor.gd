@@ -11,6 +11,7 @@ signal shoot
 signal rocket_added
 
 func _process(_delta) -> void:
+	if not controlling: return
 	move_and_slide(get_input_vector() * movement_speed)
 
 # Returns a normalized input vector.
@@ -34,7 +35,7 @@ func _unhandled_input(event) -> void:
 		emit_signal("shoot", proj)
 		get_tree().set_input_as_handled()
 
-	if event.is_action_pressed("add_rocket"):
+	if event.is_action_pressed("add_rocket") && controlling:
 		controlling = false
 		emit_signal("rocket_added")
 		get_tree().set_input_as_handled()
