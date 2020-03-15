@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Game.gd" type="Script" id=2]
 [ext_resource path="res://scenes/actors/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Cutscene.tscn" type="PackedScene" id=4]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
@@ -19,3 +20,5 @@ collision_mask = 1
 position = Vector2( 142.295, -131.798 )
 
 [node name="Level" type="Node" parent="."]
+
+[node name="Cutscene" parent="." instance=ExtResource( 4 )]
