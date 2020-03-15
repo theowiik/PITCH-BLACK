@@ -50,3 +50,6 @@ func _input(event) -> void:
 
 func _on_DetectionArea_body_entered(body):
 	body.reveal()
+
+func _on_Rocket_body_entered(body):
+	explode()

@@ -87,8 +87,9 @@ explode_rocket={
 2d_physics/layer_2="enemy"
 2d_physics/layer_3="projectile"
 2d_physics/layer_4="ammo"
+2d_physics/layer_5="wall"
 
 [rendering]
 
-environment/default_clear_color=Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"

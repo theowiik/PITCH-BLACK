@@ -14,5 +14,6 @@ func _physics_process(delta):
 	transform = transform.translated(dir_vector * speed * delta)
 
 func _on_Projectile_body_entered(body):
-	body.take_damage(damage)
+	if body.has_method("take_damage"):
+		body.take_damage(damage)
 	queue_free()
