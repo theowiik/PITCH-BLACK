@@ -18,8 +18,8 @@ func play_anim(vec: Vector2) -> void:
 	elif vec.x < 0:
 		anim_player.play("left")
 	elif vec.y > 0:
-		anim_player.play("up")
-	elif vec.y < 0:
 		anim_player.play("down")
+	elif vec.y < 0:
+		anim_player.play("up")
 	else:
 		anim_player.play("idle")

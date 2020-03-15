@@ -29,7 +29,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
 		var proj: Projectile = projectile.instance()
 		proj.global_position = global_position
-		print("wasd")
 		emit_signal("shoot", proj)
 		get_tree().set_input_as_handled()
 

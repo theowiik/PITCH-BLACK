@@ -14,6 +14,7 @@ func on_shoot(projectile: Projectile) -> void:
 	add_child(projectile)
 
 func on_rocket_added() -> void:
+	set_high_fov()
 	var instance = rocket.instance()
 	player.remove_child(camera)
 	instance.add_child(camera)
@@ -22,8 +23,15 @@ func on_rocket_added() -> void:
 	add_child(instance)
 
 func on_rocket_exploded() -> void:
+	set_normal_zoom()
 	var cam_parent = camera.get_parent()
 	if cam_parent != null:
 		cam_parent.remove_child(camera)
 	player.add_child(camera)
 	player.controlling = true
+
+func set_high_fov() -> void:
+	camera.zoom = Vector2(2, 2)
+
+func set_normal_zoom() -> void:
+	camera.zoom = Vector2(1, 1)

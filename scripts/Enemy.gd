@@ -17,6 +17,7 @@ func reveal() -> void:
 	$RevealTime.start()
 	$Sprite.visible = true
 	detected = true
+	anim_player.play("chocked")
 
 func _on_RevealTime_timeout():
 	$RevealText.visible = false

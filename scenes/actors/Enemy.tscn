@@ -1,8 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/actors/Actor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://assets/enemy.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "chocked"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
+}
 
 [node name="Enemy" instance=ExtResource( 1 )]
 collision_layer = 2
@@ -11,6 +26,7 @@ script = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 3 )
+frame = 10
 
 [node name="RevealTime" type="Timer" parent="." index="2"]
 one_shot = true
@@ -28,4 +44,7 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" parent="." index="4"]
+anims/chocked = SubResource( 1 )
 [connection signal="timeout" from="RevealTime" to="." method="_on_RevealTime_timeout"]
