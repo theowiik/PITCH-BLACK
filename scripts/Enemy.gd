@@ -20,3 +20,12 @@ func reveal() -> void:
 
 func _on_RevealTime_timeout():
 	$RevealText.visible = false
+
+func take_damage(damage: int) -> void:
+	if detected:
+		health -= damage
+	else:
+		health -= damage / 3.0
+
+	if health <= 0:
+		queue_free()
