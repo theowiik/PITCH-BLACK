@@ -3,7 +3,8 @@ extends Area2D
 class_name Projectile
 
 var dir_vector: Vector2 = Vector2(0, 0)
-const speed: int = 200;
+var damage: int = 50
+const speed: int = 250;
 
 func _ready():
 	var m = get_global_mouse_position()
@@ -11,3 +12,7 @@ func _ready():
 
 func _physics_process(delta):
 	transform = transform.translated(dir_vector * speed * delta)
+
+func _on_Projectile_body_entered(body):
+	body.take_damage(damage)
+	queue_free()
