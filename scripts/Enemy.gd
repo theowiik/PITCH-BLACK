@@ -11,4 +11,9 @@ func _physics_process(delta):
 	move_and_slide(global_position.direction_to(player.global_position) * movement_speed)
 
 func reveal() -> void:
+	$RevealText.visible = true
+	$RevealTime.start()
 	$Sprite.visible = true
+
+func _on_RevealTime_timeout():
+	$RevealText.visible = false

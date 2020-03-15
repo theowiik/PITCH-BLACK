@@ -12,3 +12,21 @@ script = ExtResource( 2 )
 [node name="Sprite" parent="." index="0"]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
+
+[node name="RevealTime" type="Timer" parent="." index="2"]
+one_shot = true
+autostart = true
+
+[node name="RevealText" type="Label" parent="." index="3"]
+visible = false
+margin_left = -30.0
+margin_top = -64.0
+margin_right = 30.0
+margin_bottom = -14.0
+text = "!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="RevealTime" to="." method="_on_RevealTime_timeout"]
