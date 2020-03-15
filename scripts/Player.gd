@@ -20,19 +20,19 @@ func get_input_vector() -> Vector2:
 func _physics_process(_delta: float) -> void:
 	if not controlling: return
 
+	# Move
 	var vel: Vector2 = move_and_slide(get_input_vector() * movement_speed)
 	play_anim(vel)
 
-func _unhandled_input(event: InputEvent) -> void:
-	if not controlling: return
-
-	if event.is_action_pressed("shoot"):
+	# Shoot
+	if Input.is_action_just_pressed("shoot"):
 		var proj: Projectile = projectile.instance()
 		proj.global_position = global_position
 		emit_signal("shoot", proj)
 		get_tree().set_input_as_handled()
 
-	if event.is_action_pressed("add_rocket") && controlling:
+	# Rocket
+	if Input.is_action_just_pressed("add_rocket"):
 		controlling = false
 		emit_signal("rocket_added")
 		get_tree().set_input_as_handled()

@@ -13,8 +13,13 @@ onready var smoke_delay: Timer = get_node("Timer")
 func _physics_process(delta: float) -> void:
 	move_loop(delta)
 	rotation_loop()
+
 	if time_to_smoke():
 		add_smoke()
+
+	if Input.is_action_just_pressed("explode_rocket"):
+		explode()
+		get_tree().set_input_as_handled()
 
 func time_to_smoke() -> bool:
 	return smoke_delay.is_stopped()
@@ -42,11 +47,6 @@ func dir_to_mouse() -> Vector2:
 func explode() -> void:
 	emit_signal("exploded")
 	queue_free()
-
-func _input(event) -> void:
-	if event.is_action_pressed("explode_rocket"):
-		explode()
-		get_tree().set_input_as_handled()
 
 func _on_DetectionArea_body_entered(body):
 	body.reveal()

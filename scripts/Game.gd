@@ -1,8 +1,11 @@
 extends Node2D
 
+signal cutscene_finished
+
 const rocket: PackedScene = preload("res://scenes/Rocket.tscn")
 onready var player: Actor = get_node("Player")
 onready var camera: Camera2D = get_node("Camera")
+onready var cutscene: Cutscene = get_node("Cutscene")
 
 var current_level: int = 0
 var levels = [
@@ -12,11 +15,34 @@ var levels = [
 ]
 
 func _ready() -> void:
+	# intro()
+	# yield(self, "cutscene_finished")
+
+	# Signals
 	player.connect("shoot", self, "on_shoot")
 	player.connect("rocket_added", self, "on_rocket_added")
+
+	# Camera
 	remove_child(camera)
 	player.add_child(camera)
+
+	# Room
 	start_room()
+
+func intro() -> void:
+	cutscene.show()
+
+	cutscene.display("...")
+	yield(cutscene, "finished")
+	cutscene.display("...")
+	yield(cutscene, "finished")
+	cutscene.display("it's so dark in here")
+	yield(cutscene, "finished")
+	cutscene.display("I need to find a flashlight")
+	yield(cutscene, "finished")
+
+	cutscene.hide()
+	emit_signal("cutscene_finished")
 
 func start_room() -> void:
 	for child in $Level.get_children():
@@ -43,7 +69,7 @@ func next_room() -> void:
 		start_room()
 
 func end_screen() -> void:
-	print("won!")
+	$Cutscene.visible = true
 
 func on_shoot(projectile: Projectile) -> void:
 	add_child(projectile)
@@ -66,7 +92,7 @@ func on_rocket_exploded() -> void:
 	player.controlling = true
 
 func set_high_fov() -> void:
-	camera.zoom = Vector2(2, 2)
+	camera.zoom = Vector2(1.5, 1.5)
 
 func set_normal_zoom() -> void:
 	camera.zoom = Vector2(1, 1)
