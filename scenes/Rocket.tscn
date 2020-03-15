@@ -23,4 +23,9 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.03
+one_shot = true
+autostart = true
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
