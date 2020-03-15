@@ -17,11 +17,13 @@ func get_input_vector() -> Vector2:
 
 	return vec.normalized()
 
-func _process(_delta) -> void:
+func _physics_process(_delta: float) -> void:
 	if not controlling: return
-	move_and_slide(get_input_vector() * movement_speed)
 
-func _unhandled_input(event) -> void:
+	var vel: Vector2 = move_and_slide(get_input_vector() * movement_speed)
+	play_anim(vel)
+
+func _unhandled_input(event: InputEvent) -> void:
 	if not controlling: return
 
 	if event.is_action_pressed("shoot"):
