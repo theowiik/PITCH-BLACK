@@ -39,9 +39,6 @@ func take_damage(damage: int) -> void:
 	else:
 		health -= damage / 3.0
 
-	if not detected:
-		chocked = true
-
 	chasing = true
 
 	if health <= 0:
