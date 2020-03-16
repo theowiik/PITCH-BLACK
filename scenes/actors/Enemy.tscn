@@ -46,4 +46,6 @@ __meta__ = {
 
 [node name="AnimationPlayer" parent="." index="4"]
 anims/chocked = SubResource( 1 )
+
+[node name="Navigation2D" type="Navigation2D" parent="." index="5"]
 [connection signal="timeout" from="RevealTime" to="." method="_on_RevealTime_timeout"]
