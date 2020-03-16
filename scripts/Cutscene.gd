@@ -5,7 +5,6 @@ class_name Cutscene
 signal finished
 
 onready var text_label: Label = get_node("CenterContainer/Label")
-onready var delay_timer: Timer = get_node("Delay")
 const delay_time: float = 0.1
 const finished_delay: float = 3.0
 

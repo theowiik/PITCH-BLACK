@@ -6,7 +6,7 @@ signal exploded
 
 var dir_vector: Vector2 = Vector2(0, 0)
 const speed: int = 200
-const rotation_speed: float = 0.05
+const rotation_speed: float = 0.07
 const smoke: PackedScene = preload("res://scenes/Smoke.tscn")
 onready var smoke_delay: Timer = get_node("Timer")
 

@@ -27,7 +27,7 @@ func _ready() -> void:
 	player.add_child(camera)
 
 	# Room
-	start_room()
+	reset_room()
 
 func intro() -> void:
 	cutscene.show()
@@ -44,15 +44,23 @@ func intro() -> void:
 	cutscene.hide()
 	emit_signal("cutscene_finished")
 
-func start_room() -> void:
+func reset_room() -> void:
+	# Remove all nodes
 	for child in $Level.get_children():
 		child.queue_free()
 
+	# Create nodes
 	var nextLevel: PackedScene = load(levels[current_level])
 	var instance: Node2D = nextLevel.instance()
 	$Level.add_child(instance)
+
+	# Spawn
 	var spawn: Vector2 = instance.get_node("Spawn").global_position
 	player.global_position = spawn
+
+	# Enemies
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		enemy.player = player
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug"):
@@ -66,7 +74,7 @@ func next_room() -> void:
 	if finished:
 		end_screen()
 	else:
-		start_room()
+		reset_room()
 
 func end_screen() -> void:
 	$Cutscene.visible = true
