@@ -1,5 +1,7 @@
 extends "res://scripts/Actor.gd"
 
+class_name Player
+
 var controlling: bool = true;
 const projectile: PackedScene = preload("res://scenes/Projectile.tscn")
 
