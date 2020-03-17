@@ -15,8 +15,8 @@ var levels = [
 ]
 
 func _ready() -> void:
-	#intro()
-	#yield(self, "cutscene_finished")
+	intro()
+	yield(self, "cutscene_finished")
 
 	# Signals
 	player.connect("shoot", self, "on_shoot")
@@ -45,23 +45,31 @@ func intro() -> void:
 	emit_signal("cutscene_finished")
 
 func reset_room() -> void:
-	# Remove all nodes
-	for child in $Level.get_children():
-		child.queue_free()
+	# Remove current level
+	var lvl: Node2D = $Level.get_child(0)
+	$Level.remove_child(lvl)
+	if lvl != null:
+		lvl.queue_free()
 
 	# Create nodes
 	var nextLevel: PackedScene = load(levels[current_level])
 	var instance: Node2D = nextLevel.instance()
+	# $Level.call_deferred("add_child", instance)
 	$Level.add_child(instance)
 
 	# Spawn
-	var spawn: Vector2 = instance.get_node("Spawn").global_position
+	var spawn: Vector2 = instance.get_node("Spawn").position
 	player.global_position = spawn
 
 	# Enemies
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		enemy.player = player
-		enemy.connect("request_path", self, "on_request_path")
+		if not enemy.is_connected("request_path", self, "on_request_path"):
+			enemy.connect("request_path", self, "on_request_path")
+
+	# Door
+	var teleporter: Teleporter = instance.get_node("Teleporter")
+	teleporter.connect("teleporter_entered", self, "next_room")
 
 func on_request_path(from: Vector2, to: Vector2, who: Enemy) -> void:
 	var level: LevelTemplate = $Level.get_child(0)
