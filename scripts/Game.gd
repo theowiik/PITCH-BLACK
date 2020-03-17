@@ -15,8 +15,8 @@ var levels = [
 ]
 
 func _ready() -> void:
-	# intro()
-	# yield(self, "cutscene_finished")
+	#intro()
+	#yield(self, "cutscene_finished")
 
 	# Signals
 	player.connect("shoot", self, "on_shoot")

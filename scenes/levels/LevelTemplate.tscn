@@ -4,10 +4,12 @@
 
 [node name="LevelTemplate" type="Node2D"]
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="Spawn" type="Position2D" parent="."]
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Navigation2D"]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 16
 format = 1
-
-[node name="Spawn" type="Position2D" parent="."]
