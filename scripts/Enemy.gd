@@ -2,6 +2,8 @@ extends "res://scripts/Actor.gd"
 
 class_name Enemy
 
+signal request_path
+
 var player: Actor
 var detected: bool = false
 var chocked: bool = false
@@ -17,13 +19,10 @@ func _physics_process(delta):
 	if player == null || not chasing || chocked:
 		return
 
-	if Input.is_action_just_pressed("debug2"):
-		print("yooo")
-		# temp
-		var nav: Navigation2D = get_node("../Navigation2D")
-		path = nav.get_simple_path(global_position, player.global_position)
+	if ($NavigationRate.is_stopped()):
+		emit_signal("request_path", global_position, player.global_position, self)
+		$NavigationRate.start()
 
-	# move_and_slide(global_position.direction_to(player.global_position) * movement_speed)
 	move_along_path(movement_speed * delta)
 
 # From GDQuest

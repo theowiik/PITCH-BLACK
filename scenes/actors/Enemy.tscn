@@ -48,4 +48,8 @@ __meta__ = {
 anims/chocked = SubResource( 1 )
 
 [node name="Navigation2D" type="Navigation2D" parent="." index="5"]
+
+[node name="NavigationRate" type="Timer" parent="." index="6"]
+wait_time = 0.2
+one_shot = true
 [connection signal="timeout" from="RevealTime" to="." method="_on_RevealTime_timeout"]

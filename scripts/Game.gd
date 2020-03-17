@@ -61,6 +61,12 @@ func reset_room() -> void:
 	# Enemies
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		enemy.player = player
+		enemy.connect("request_path", self, "on_request_path")
+
+func on_request_path(from: Vector2, to: Vector2, who: Enemy) -> void:
+	var level: LevelTemplate = $Level.get_child(0)
+	var nav: Navigation2D = level.get_navigation()
+	who.path = nav.get_simple_path(from, to)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug"):
