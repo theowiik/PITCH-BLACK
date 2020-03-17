@@ -30,7 +30,6 @@ func move_along_path(distance: float) -> void:
 	var start: Vector2 = position
 
 	for i in range(path.size()):
-		print("ayy they did rel")
 		var distance_to_next := start.distance_to(path[0])
 
 		if distance <= distance_to_next and distance >= 0.0:
@@ -38,7 +37,6 @@ func move_along_path(distance: float) -> void:
 			break
 		elif distance < 0.0:
 			position = path[0]
-			#set_process(false)
 			break
 
 		distance -= distance_to_next
