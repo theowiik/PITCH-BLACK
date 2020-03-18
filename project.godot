@@ -48,6 +48,11 @@ _global_script_classes=[ {
 "class": "Teleporter",
 "language": "GDScript",
 "path": "res://scripts/Teleporter.gd"
+}, {
+"base": "CanvasLayer",
+"class": "Transition",
+"language": "GDScript",
+"path": "res://scripts/Transition.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
@@ -57,7 +62,8 @@ _global_script_class_icons={
 "Player": "",
 "Projectile": "",
 "Rocket": "",
-"Teleporter": ""
+"Teleporter": "",
+"Transition": ""
 }
 
 [application]

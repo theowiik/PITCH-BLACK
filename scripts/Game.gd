@@ -46,6 +46,11 @@ func intro() -> void:
 	emit_signal("cutscene_finished")
 
 func reset_room() -> void:
+	$Transition.fade_in()
+	yield($Transition, "transition_finished")
+	get_tree().paused = true
+
+	# Health
 	player.health = player.max_health
 
 	# Remove current level
@@ -71,6 +76,13 @@ func reset_room() -> void:
 	# Door
 	var teleporter: Teleporter = instance.get_teleporter()
 	teleporter.connect("teleporter_entered", self, "next_room")
+
+	# Fade and continue process
+	camera.smoothing_enabled = false
+	camera.global_position = instance.get_spawn()
+	#camera.smoothing_enabled = true
+	get_tree().paused = false
+	$Transition.fade_out()
 
 func on_request_path(from: Vector2, to: Vector2, who: Enemy) -> void:
 	var level: LevelTemplate = $Level.get_child(0)
