@@ -5,6 +5,7 @@ class_name Actor
 var health: float = 100
 const movement_speed: int = 100
 onready var anim_player: AnimationPlayer = get_node("AnimationPlayer")
+const death_effect: PackedScene = preload("res://scenes/DeathEffect.tscn")
 
 func take_damage(damage: int) -> void:
 	health -= damage
