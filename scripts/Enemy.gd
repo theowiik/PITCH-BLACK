@@ -38,7 +38,7 @@ func _physics_process(delta):
 func move_along_path(distance: float) -> void:
 	var start: Vector2 = position
 
-	for i in range(path.size()):
+	for _i in range(path.size()):
 		var distance_to_next := start.distance_to(path[0])
 
 		if distance <= distance_to_next and distance >= 0.0:

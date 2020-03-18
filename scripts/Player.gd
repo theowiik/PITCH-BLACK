@@ -8,6 +8,10 @@ const projectile: PackedScene = preload("res://scenes/Projectile.tscn")
 signal shoot
 signal rocket_added
 
+func take_damage(damage: int) -> void:
+	health -= damage
+	emit_signal("died")
+
 # Returns a normalized input vector.
 func get_input_vector() -> Vector2:
 	var vec = Vector2(0,0)

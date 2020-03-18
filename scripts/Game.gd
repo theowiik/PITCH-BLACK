@@ -21,6 +21,7 @@ func _ready() -> void:
 	# Signals
 	player.connect("shoot", self, "on_shoot")
 	player.connect("rocket_added", self, "on_rocket_added")
+	player.connect("died", self, "reset_room")
 
 	# Camera
 	remove_child(camera)
@@ -45,25 +46,22 @@ func intro() -> void:
 	emit_signal("cutscene_finished")
 
 func reset_room() -> void:
-	# Remove current level
-	if $Level.get_children().size() > 0:
-		var lvl: Node2D = $Level.get_child(0)
-		$Level.remove_child(lvl)
-		if lvl != null:
-			lvl.queue_free()
+	player.health = player.max_health
 
-	# Create nodes
-	var nextLevel: PackedScene = load(levels[current_level])
-	var instance: Node2D = nextLevel.instance()
-	# $Level.call_deferred("add_child", instance)
-	$Level.add_child(instance)
+	# Remove current level
+	for n in $Level.get_children():
+		n.queue_free()
+
+	# Instance scene
+	var level: PackedScene = load(levels[current_level])
+	var instance: LevelTemplate = level.instance()
+	$Level.call_deferred("add_child", instance)
 
 	# Spawn
-	var spawn: Vector2 = instance.get_node("Spawn").position
-	player.global_position = spawn
+	player.global_position = instance.get_spawn()
 
 	# Enemies
-	for enemy in get_tree().get_nodes_in_group("enemies"):
+	for enemy in instance.get_enemies():
 		enemy.player = player
 		if not enemy.is_connected("request_path", self, "on_request_path"):
 			enemy.connect("request_path", self, "on_request_path")
@@ -71,7 +69,7 @@ func reset_room() -> void:
 			enemy.connect("indicate_walk", self, "add_child")
 
 	# Door
-	var teleporter: Teleporter = instance.get_node("Teleporter")
+	var teleporter: Teleporter = instance.get_teleporter()
 	teleporter.connect("teleporter_entered", self, "next_room")
 
 func on_request_path(from: Vector2, to: Vector2, who: Enemy) -> void:
@@ -82,6 +80,8 @@ func on_request_path(from: Vector2, to: Vector2, who: Enemy) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug"):
 		next_room()
+	if event.is_action_pressed("debug2"):
+		reset_room()
 
 func next_room() -> void:
 	current_level += 1

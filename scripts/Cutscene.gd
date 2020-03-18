@@ -27,6 +27,3 @@ func hide() -> void:
 
 func show() -> void:
 	text_label.visible = true
-
-func wait(ms: float) -> void:
-	print("do")
