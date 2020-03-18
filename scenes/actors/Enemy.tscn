@@ -71,6 +71,7 @@ collision_layer = 0
 shape = SubResource( 3 )
 
 [node name="IndicatorTimer" type="Timer" parent="." index="9"]
+wait_time = 0.25
 one_shot = true
 [connection signal="timeout" from="RevealTime" to="." method="_on_RevealTime_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
