@@ -28,7 +28,7 @@ func _physics_process(delta):
 		emit_signal("indicate_walk", instance)
 		$IndicatorTimer.start()
 
-	if ($NavigationRate.is_stopped()):
+	if $NavigationRate.is_stopped():
 		emit_signal("request_path", global_position, player.global_position, self)
 		$NavigationRate.start()
 

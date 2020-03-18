@@ -53,3 +53,19 @@ func _on_DetectionArea_body_entered(body):
 
 func _on_Rocket_body_entered(body):
 	explode()
+
+func _draw():
+	draw_circle_arc_poly(Vector2.ZERO, 70, -50, 50, Color(1, 1, 1, 0.6))
+
+# From Godot docs
+func draw_circle_arc_poly(center: Vector2, radius: float, angle_from: float, angle_to: float, color: Color):
+	var nb_points: int = 32
+	var points_arc: PoolVector2Array = PoolVector2Array()
+	points_arc.push_back(center)
+	var colors: PoolColorArray = PoolColorArray([color])
+
+	for i in range(nb_points + 1):
+		var angle_point = angle_from + i * (angle_to - angle_from) / nb_points
+		points_arc.push_back(center + Vector2(cos(deg2rad(angle_point)), sin(deg2rad(angle_point))) * radius)
+
+	draw_polygon(points_arc, colors)
