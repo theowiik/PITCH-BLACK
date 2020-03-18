@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/actors/Actor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Enemy.gd" type="Script" id=2]
@@ -21,6 +21,9 @@ tracks/0/keys = {
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 69.52
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 12.5999
 
 [node name="Enemy" instance=ExtResource( 1 )]
 collision_layer = 2
@@ -60,5 +63,15 @@ one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0"]
 shape = SubResource( 2 )
+
+[node name="DamageArea" type="Area2D" parent="." index="8"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]
+shape = SubResource( 3 )
+
+[node name="IndicatorTimer" type="Timer" parent="." index="9"]
+one_shot = true
 [connection signal="timeout" from="RevealTime" to="." method="_on_RevealTime_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_DamageArea_body_entered"]

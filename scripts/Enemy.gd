@@ -3,6 +3,7 @@ extends "res://scripts/Actor.gd"
 class_name Enemy
 
 signal request_path
+signal indicate_walk
 
 var player: Actor
 var detected: bool = false
@@ -10,6 +11,7 @@ var chocked: bool = false
 var chasing: bool = false
 var path := PoolVector2Array();
 onready var nav_2d: Navigation2D = $Navigation2D
+onready var walk_indicator: PackedScene = preload("res://scenes/Smoke.tscn")
 
 func _ready():
 	add_to_group("enemies")
@@ -18,6 +20,13 @@ func _ready():
 func _physics_process(delta):
 	if player == null || not chasing || chocked:
 		return
+
+	if $IndicatorTimer.is_stopped():
+		var instance = walk_indicator.instance()
+		instance.global_position = global_position
+		instance.emitting = true
+		emit_signal("indicate_walk", instance)
+		$IndicatorTimer.start()
 
 	if ($NavigationRate.is_stopped()):
 		emit_signal("request_path", global_position, player.global_position, self)
@@ -72,3 +81,6 @@ func take_damage(damage: int) -> void:
 func _on_DetectionArea_body_entered(body):
 	if body is Player:
 		chasing = true
+
+func _on_DamageArea_body_entered(body):
+	body.take_damage(50)
