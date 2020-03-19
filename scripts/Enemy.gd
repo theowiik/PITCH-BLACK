@@ -28,6 +28,7 @@ func _physics_process(delta):
 		instance.emitting = true
 		emit_signal("indicate_walk", instance)
 		$IndicatorTimer.start()
+		if not detected: $HiddenWalkPlayer.play()
 
 	if $NavigationRate.is_stopped():
 		emit_signal("request_path", global_position, player.global_position, self)
@@ -80,8 +81,16 @@ func take_damage(damage: int) -> void:
 		var instance = death_effect.instance()
 		instance.global_position = global_position
 		instance.emitting = true
+		add_death_player()
 		get_parent().add_child(instance)
 		queue_free()
+
+func add_death_player() -> void:
+		var d_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+		d_player.stream = load("res://assets/sfx/death.wav")
+		d_player.play()
+		get_parent().add_child(d_player)
+		d_player.global_position = global_position
 
 func _on_DetectionArea_body_entered(body):
 	if body is Player:

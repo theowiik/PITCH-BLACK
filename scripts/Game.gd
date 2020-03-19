@@ -82,8 +82,10 @@ func reset_room() -> void:
 	teleporter.connect("teleporter_entered", self, "next_room")
 
 	# HUD
-	hud.set_rockets(player.rockets)
-	hud.set_enemies(0, instance.get_total_enemies())
+	hud.rockets = player.rockets
+	hud.discovered = 0
+	hud.total_enemies = instance.get_total_enemies()
+	hud.update()
 
 	# Fade and continue process
 	camera.smoothing_enabled = false
@@ -93,7 +95,7 @@ func reset_room() -> void:
 	$Transition.fade_out()
 
 func on_discovered() -> void:
-	hud.set_enemies(0, 2)
+	hud.decrease_discovered()
 
 func on_request_path(from: Vector2, to: Vector2, who: Enemy) -> void:
 	var level: LevelTemplate = $Level.get_child(0)
@@ -123,7 +125,7 @@ func on_shoot(projectile: Projectile) -> void:
 	add_child(projectile)
 
 func on_rocket_added() -> void:
-	$HUD.set_rockets(player.rockets)
+	hud.decrease_rockets()
 	set_high_fov()
 	var instance = rocket.instance()
 	player.remove_child(camera)
