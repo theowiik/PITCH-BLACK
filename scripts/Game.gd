@@ -17,6 +17,7 @@ var levels = [
 
 func _ready() -> void:
 	randomize()
+	$Music.play()
 	#intro()
 	#yield(self, "cutscene_finished")
 
@@ -50,6 +51,7 @@ func intro() -> void:
 func reset_room() -> void:
 	$Transition.fade_in()
 	yield($Transition, "transition_finished")
+	$RestartPlayer.play()
 	get_tree().paused = true
 
 	# Health

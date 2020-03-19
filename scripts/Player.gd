@@ -24,12 +24,22 @@ func get_input_vector() -> Vector2:
 
 	return vec.normalized()
 
+func play_if_moving(vector: Vector2) -> void:
+	if vector.length() <= 0: return
+
+	if $DelayBetweenWalks.is_stopped():
+		var pitch: float = rand_range(0.3, 1.9)
+		$WalkPlayer.pitch_scale = pitch
+		$WalkPlayer.play()
+		$DelayBetweenWalks.start()
+
 func _physics_process(_delta: float) -> void:
 	if not controlling: return
 
 	# Move
 	var vel: Vector2 = move_and_slide(get_input_vector() * movement_speed)
 	play_anim(vel)
+	play_if_moving(vel)
 
 	# Shoot
 	if Input.is_action_just_pressed("shoot"):
