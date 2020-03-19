@@ -16,6 +16,7 @@ var levels = [
 ]
 
 func _ready() -> void:
+	randomize()
 	#intro()
 	#yield(self, "cutscene_finished")
 

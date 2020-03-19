@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/discover3.wav-6a9ed3a120010e359c140f00eb8a4db8.sample"
+
+[deps]
+
+source_file="res://assets/sfx/discover3.wav"
+dest_files=[ "res://.import/discover3.wav-6a9ed3a120010e359c140f00eb8a4db8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

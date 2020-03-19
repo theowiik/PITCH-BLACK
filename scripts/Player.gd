@@ -33,6 +33,7 @@ func _physics_process(_delta: float) -> void:
 
 	# Shoot
 	if Input.is_action_just_pressed("shoot"):
+		$ThrowPlayer.play()
 		var proj: Projectile = projectile.instance()
 		proj.global_position = global_position
 		emit_signal("shoot", proj)

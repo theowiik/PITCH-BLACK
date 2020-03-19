@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/player.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://assets/sfx/hurt.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sfx/throw.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -100,3 +102,10 @@ anims/idle = SubResource( 3 )
 anims/left = SubResource( 4 )
 anims/right = SubResource( 5 )
 anims/up = SubResource( 6 )
+
+[node name="HurtPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
+[node name="ThrowPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -1.982

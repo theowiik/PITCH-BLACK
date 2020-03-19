@@ -63,7 +63,14 @@ func reveal() -> void:
 	anim_player.play("chocked")
 	chocked = true
 	chasing = true
+	play_discover_sound()
 	emit_signal("discovered")
+
+func play_discover_sound() -> void:
+	if rand_range(0, 1) > 0.5:
+		$DiscoverPlayer1.play()
+	else:
+		$DiscoverPlayer2.play()
 
 func _on_RevealTime_timeout():
 	$RevealText.visible = false
@@ -75,6 +82,7 @@ func take_damage(damage: int) -> void:
 	else:
 		health -= damage / 3.0
 
+	$HurtPlayer.play()
 	chasing = true
 
 	if health <= 0:
