@@ -4,6 +4,7 @@ class_name Enemy
 
 signal request_path
 signal indicate_walk
+signal discovered
 
 var player: Actor
 var detected: bool = false
@@ -61,10 +62,10 @@ func reveal() -> void:
 	anim_player.play("chocked")
 	chocked = true
 	chasing = true
+	emit_signal("discovered")
 
 func _on_RevealTime_timeout():
 	$RevealText.visible = false
-	print("hi")
 	chocked = false
 
 func take_damage(damage: int) -> void:

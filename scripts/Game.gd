@@ -6,6 +6,7 @@ const rocket: PackedScene = preload("res://scenes/Rocket.tscn")
 onready var player: Actor = get_node("Player")
 onready var camera: Camera2D = get_node("Camera")
 onready var cutscene: Cutscene = get_node("Cutscene")
+onready var hud: HUD = $HUD
 
 var current_level: int = 0
 var levels = [
@@ -52,6 +53,7 @@ func reset_room() -> void:
 
 	# Health
 	player.health = player.max_health
+	player.rockets = 3
 
 	# Remove current level
 	for n in $Level.get_children():
@@ -72,10 +74,16 @@ func reset_room() -> void:
 			enemy.connect("request_path", self, "on_request_path")
 		if not enemy.is_connected("indicate_walk", self, "add_child"):
 			enemy.connect("indicate_walk", self, "add_child")
+		if not enemy.is_connected("discovered", self, "on_discovered"):
+			enemy.connect("discovered", self, "on_discovered")
 
 	# Door
 	var teleporter: Teleporter = instance.get_teleporter()
 	teleporter.connect("teleporter_entered", self, "next_room")
+
+	# HUD
+	hud.set_rockets(player.rockets)
+	hud.set_enemies(0, instance.get_total_enemies())
 
 	# Fade and continue process
 	camera.smoothing_enabled = false
@@ -83,6 +91,9 @@ func reset_room() -> void:
 	#camera.smoothing_enabled = true
 	get_tree().paused = false
 	$Transition.fade_out()
+
+func on_discovered() -> void:
+	hud.set_enemies(0, 2)
 
 func on_request_path(from: Vector2, to: Vector2, who: Enemy) -> void:
 	var level: LevelTemplate = $Level.get_child(0)
@@ -112,6 +123,7 @@ func on_shoot(projectile: Projectile) -> void:
 	add_child(projectile)
 
 func on_rocket_added() -> void:
+	$HUD.set_rockets(player.rockets)
 	set_high_fov()
 	var instance = rocket.instance()
 	player.remove_child(camera)

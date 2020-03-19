@@ -13,11 +13,10 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="CenterContainer"]
-margin_left = 96.0
+margin_left = 150.0
 margin_top = 143.0
-margin_right = 204.0
+margin_right = 150.0
 margin_bottom = 157.0
-text = "this is some text"
 __meta__ = {
 "_edit_use_anchors_": false
 }

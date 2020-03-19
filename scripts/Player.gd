@@ -2,7 +2,8 @@ extends "res://scripts/Actor.gd"
 
 class_name Player
 
-var controlling: bool = true;
+var controlling: bool = true
+var rockets: int = 3
 const projectile: PackedScene = preload("res://scenes/Projectile.tscn")
 
 signal shoot
@@ -39,6 +40,7 @@ func _physics_process(_delta: float) -> void:
 
 	# Rocket
 	if Input.is_action_just_pressed("add_rocket"):
+		rockets -= 1
 		controlling = false
 		emit_signal("rocket_added")
 		get_tree().set_input_as_handled()
