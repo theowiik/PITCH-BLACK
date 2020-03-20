@@ -78,6 +78,10 @@ config/name="PITCH-BLACK"
 run/main_scene="res://Scenes/Menu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameMeta="*res://scripts/GameMeta.gd"
+
 [display]
 
 window/size/width=300

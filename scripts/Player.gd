@@ -12,7 +12,9 @@ signal shoot
 signal rocket_added
 
 func take_damage(damage: int) -> void:
-	health -= damage
+	anim_player.play("death")
+	controlling = false
+	anim_player.play("death")
 	emit_signal("died")
 
 # Returns a normalized input vector.

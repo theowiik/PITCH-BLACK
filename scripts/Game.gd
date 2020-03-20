@@ -71,6 +71,9 @@ func reset_room() -> void:
 	# Health
 	player.health = player.max_health
 	player.rockets = 3
+	player.controlling = true
+	player.can_shoot = GameMeta.scripted_death
+	player.can_shoot_rockets = GameMeta.scripted_death
 
 	# Remove current level
 	for n in $Level.get_children():
