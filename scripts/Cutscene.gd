@@ -5,8 +5,8 @@ class_name Cutscene
 signal finished
 
 onready var text_label: Label = get_node("CenterContainer/Label")
-const delay_time: float = 0.1
-const finished_delay: float = 3.0
+const delay_time: float = 0.0001
+const finished_delay: float = 0.2
 
 func _ready() -> void:
 	text_label.text = ""

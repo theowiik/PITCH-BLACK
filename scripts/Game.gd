@@ -20,8 +20,8 @@ var levels = [
 func _ready() -> void:
 	randomize()
 	$Music.play()
-	#intro()
-	#yield(self, "cutscene_finished")
+	intro()
+	yield(self, "cutscene_finished")
 
 	# Signals
 	player.connect("shoot", self, "on_shoot")
@@ -37,15 +37,16 @@ func _ready() -> void:
 
 func scripted_death() -> void:
 	player.controlling = false
-	
+
 	yield(get_tree().create_timer(2), "timeout")
 	cutscene.show()
-	cutscene.display("what was that")
+	cutscene.display("who this?")
 	yield(cutscene, "finished")
 	cutscene.hide()
 	emit_signal("cutscene_finished")
 
 func intro() -> void:
+	$Transition/ColorRect.color = Color(0, 0, 0)
 	yield(get_tree().create_timer(3), "timeout")
 	cutscene.show()
 

@@ -3,6 +3,8 @@ extends "res://scripts/Actor.gd"
 class_name Player
 
 var controlling: bool = true
+var can_shoot_rockets: bool = true
+var can_shoot: bool = true
 var rockets: int = 3
 const projectile: PackedScene = preload("res://scenes/Projectile.tscn")
 
@@ -42,7 +44,7 @@ func _physics_process(_delta: float) -> void:
 	play_if_moving(vel)
 
 	# Shoot
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and can_shoot:
 		$ThrowPlayer.play()
 		var proj: Projectile = projectile.instance()
 		proj.global_position = global_position
@@ -50,7 +52,7 @@ func _physics_process(_delta: float) -> void:
 		get_tree().set_input_as_handled()
 
 	# Rocket
-	if Input.is_action_just_pressed("add_rocket"):
+	if Input.is_action_just_pressed("add_rocket") and can_shoot_rockets:
 		rockets -= 1
 		controlling = false
 		emit_signal("rocket_added")

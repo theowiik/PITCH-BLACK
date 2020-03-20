@@ -48,9 +48,11 @@ func move_along_path(distance: float) -> void:
 
 		if distance <= distance_to_next and distance >= 0.0:
 			position = start.linear_interpolate(path[0], distance / distance_to_next)
+			play_anim(position - start)
 			break
 		elif distance < 0.0:
 			position = path[0]
+			play_anim(position - start)
 			break
 
 		distance -= distance_to_next

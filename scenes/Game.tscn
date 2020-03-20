@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Game.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/sfx/restart.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/music/deep-humidity.ogg" type="AudioStream" id=7]
 [ext_resource path="res://assets/sfx/talk.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/fonts/MP16REG.tres" type="DynamicFont" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade_in"
@@ -52,11 +53,6 @@ collision_mask = 1
 
 [node name="Level" type="Node" parent="."]
 
-[node name="Cutscene" parent="." instance=ExtResource( 4 )]
-
-[node name="TalkPlayer" type="AudioStreamPlayer" parent="Cutscene"]
-stream = ExtResource( 8 )
-
 [node name="Transition" type="CanvasLayer" parent="."]
 pause_mode = 2
 script = ExtResource( 3 )
@@ -72,6 +68,11 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Transition"]
 anims/fade_in = SubResource( 1 )
 anims/fade_out = SubResource( 2 )
+
+[node name="Cutscene" parent="." instance=ExtResource( 4 )]
+
+[node name="TalkPlayer" type="AudioStreamPlayer" parent="Cutscene"]
+stream = ExtResource( 8 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource( 5 )
@@ -94,7 +95,8 @@ size_flags_horizontal = 3
 
 [node name="Rockets" type="Label" parent="HUD/HBoxContainer/VBoxContainer"]
 margin_right = 120.0
-margin_bottom = 14.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 9 )
 text = "top left"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HUD/HBoxContainer"]
@@ -106,7 +108,6 @@ size_flags_horizontal = 3
 [node name="Enemies" type="Label" parent="HUD/HBoxContainer/VBoxContainer2"]
 margin_right = 120.0
 margin_bottom = 14.0
-text = "top right"
 align = 2
 
 [node name="RestartPlayer" type="AudioStreamPlayer2D" parent="."]
