@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/fonts/MP16REG.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scripts/Menu.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/MP16REG_LARGE.tres" type="DynamicFont" id=3]
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 9
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 300.0
+margin_bottom = 145.0
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/CenterContainer"]
+margin_left = 40.0
+margin_top = 50.0
+margin_right = 260.0
+margin_bottom = 95.0
+custom_fonts/font = ExtResource( 3 )
+text = "PITCH-BLACK"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 154.0
+margin_right = 300.0
+margin_bottom = 300.0
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/VBoxContainer"]
+margin_right = 300.0
+margin_bottom = 71.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Play"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer"]
+margin_top = 75.0
+margin_right = 300.0
+margin_bottom = 146.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "by theowiik.itch.io
+for the Godot Wild Jam #19"
+align = 1
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Button" to="." method="_on_Button_pressed"]
