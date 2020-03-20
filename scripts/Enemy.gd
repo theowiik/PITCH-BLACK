@@ -23,18 +23,21 @@ func _physics_process(delta):
 		return
 
 	if $IndicatorTimer.is_stopped():
-		var instance = walk_indicator.instance()
-		instance.global_position = global_position
-		instance.emitting = true
-		emit_signal("indicate_walk", instance)
-		$IndicatorTimer.start()
-		if not detected: $HiddenWalkPlayer.play()
+		indicate_hidden()
 
 	if $NavigationRate.is_stopped():
 		emit_signal("request_path", global_position, player.global_position, self)
 		$NavigationRate.start()
 
 	move_along_path(movement_speed * delta)
+
+func indicate_hidden() -> void:
+	var instance = walk_indicator.instance()
+	instance.global_position = global_position
+	instance.emitting = true
+	emit_signal("indicate_walk", instance)
+	if not detected: $HiddenWalkPlayer.play()
+	$IndicatorTimer.start()
 
 # From GDQuest
 func move_along_path(distance: float) -> void:
@@ -101,6 +104,7 @@ func add_death_player() -> void:
 		d_player.global_position = global_position
 
 func _on_DetectionArea_body_entered(body):
+	print("entered: " + body.name)
 	if body is Player:
 		chasing = true
 

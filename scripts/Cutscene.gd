@@ -17,6 +17,8 @@ func display(text: String) -> void:
 
 	for i in text.length():
 		text_label.text += text[i]
+		$TalkPlayer.pitch_scale = rand_range(0.5, 1.5)
+		$TalkPlayer.play()
 		yield(get_tree().create_timer(delay_time), "timeout")
 
 	yield(get_tree().create_timer(finished_delay), "timeout")

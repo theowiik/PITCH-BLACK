@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scripts/Cutscene.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/MP16REG.tres" type="DynamicFont" id=2]
 
 [node name="Cutscene" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -13,10 +14,13 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="CenterContainer"]
-margin_left = 150.0
-margin_top = 143.0
-margin_right = 150.0
-margin_bottom = 157.0
+margin_left = 134.0
+margin_top = 140.0
+margin_right = 166.0
+margin_bottom = 160.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "hello"
 __meta__ = {
 "_edit_use_anchors_": false
 }

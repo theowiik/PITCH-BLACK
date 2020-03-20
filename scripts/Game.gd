@@ -10,9 +10,11 @@ onready var hud: HUD = $HUD
 
 var current_level: int = 0
 var levels = [
+	"res://scenes/levels/Level0.tscn",
 	"res://scenes/levels/Level1.tscn",
 	"res://scenes/levels/Level2.tscn",
 	"res://scenes/levels/Level3.tscn",
+	"res://scenes/levels/Level4.tscn",
 ]
 
 func _ready() -> void:
@@ -33,7 +35,18 @@ func _ready() -> void:
 	# Room
 	reset_room()
 
+func scripted_death() -> void:
+	player.controlling = false
+	
+	yield(get_tree().create_timer(2), "timeout")
+	cutscene.show()
+	cutscene.display("what was that")
+	yield(cutscene, "finished")
+	cutscene.hide()
+	emit_signal("cutscene_finished")
+
 func intro() -> void:
+	yield(get_tree().create_timer(3), "timeout")
 	cutscene.show()
 
 	cutscene.display("...")
@@ -93,7 +106,6 @@ func reset_room() -> void:
 	# Fade and continue process
 	camera.smoothing_enabled = false
 	camera.global_position = instance.get_spawn()
-	#camera.smoothing_enabled = true
 	get_tree().paused = false
 	$Transition.fade_out()
 
