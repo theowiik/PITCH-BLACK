@@ -7,4 +7,10 @@ collision_layer = 1
 collision_mask = 18
 
 [node name="Sprite" parent="." index="0"]
-frame = 10
+frame = 0
+
+[node name="AnimationPlayer" parent="." index="2"]
+autoplay = "idle"
+
+[node name="FlashlightHolder" type="Position2D" parent="." index="7"]
+position = Vector2( 14.6926, 1.85114 )

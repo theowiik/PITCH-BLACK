@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/levels/LevelTemplate.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Ending.gd" type="Script" id=2]
-[ext_resource path="res://assets/16x16.png" type="Texture" id=3]
+[ext_resource path="res://assets/flashlight.png" type="Texture" id=3]
+[ext_resource path="res://assets/sfx/spook.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/sfx/pickup.wav" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 8 )
+extents = Vector2( 6.24762, 4.48188 )
 
 [node name="Ending" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -13,12 +15,106 @@ script = ExtResource( 2 )
 [node name="TileMap" parent="Navigation2D" index="0"]
 tile_data = PoolIntArray( -983002, 0, 0, -983001, 0, 0, -983000, 0, 0, -982999, 0, 0, -982998, 0, 0, -982997, 0, 0, -982996, 0, 0, -982995, 0, 0, -982994, 0, 0, -982993, 0, 0, -982992, 0, 0, -982991, 0, 0, -982990, 0, 0, -982989, 0, 0, -982988, 0, 0, -982987, 0, 0, -982986, 0, 0, -982985, 0, 0, -982984, 0, 0, -982983, 0, 0, -982982, 0, 0, -982981, 0, 0, -982980, 0, 0, -982979, 0, 0, -982978, 0, 0, -917466, 0, 0, -917442, 0, 0, -851930, 0, 0, -851906, 0, 0, -786394, 0, 0, -786370, 0, 0, -720858, 0, 0, -720834, 0, 0, -655322, 0, 0, -655298, 0, 0, -589786, 0, 0, -589762, 0, 0, -524250, 0, 0, -524226, 0, 0, -458714, 0, 0, -458690, 0, 0, -393178, 0, 0, -393154, 0, 0, -327642, 0, 0, -327618, 0, 0, -196613, 0, 0, -196612, 0, 0, -196611, 0, 0, -196610, 0, 0, -196609, 0, 0, -262144, 0, 0, -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -262139, 0, 0, -262138, 0, 0, -262137, 0, 0, -262136, 0, 0, -262135, 0, 0, -262134, 0, 0, -262133, 0, 0, -262132, 0, 0, -262131, 0, 0, -262130, 0, 0, -262129, 0, 0, -262128, 0, 0, -262127, 0, 0, -262126, 0, 0, -262125, 0, 0, -262124, 0, 0, -262123, 0, 0, -262122, 0, 0, -262121, 0, 0, -262120, 0, 0, -262119, 0, 0, -262118, 0, 0, -262117, 0, 0, -262116, 0, 0, -262115, 0, 0, -262114, 0, 0, -262113, 0, 0, -262112, 0, 0, -262111, 0, 0, -262110, 0, 0, -262109, 0, 0, -262108, 0, 0, -262107, 0, 0, -262106, 0, 0, -262082, 0, 0, -131077, 0, 0, -196546, 0, 0, -65541, 0, 0, -131010, 0, 0, -5, 0, 0, -65474, 0, 0, 65531, 0, 0, 62, 0, 0, 131067, 0, 0, 65598, 0, 0, 196603, 0, 0, 131134, 0, 0, 262139, 0, 0, 262140, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 196623, 0, 0, 196624, 0, 0, 196625, 0, 0, 196626, 0, 0, 196627, 0, 0, 196628, 0, 0, 196629, 0, 0, 196630, 0, 0, 196631, 0, 0, 196632, 0, 0, 196633, 0, 0, 196634, 0, 0, 196635, 0, 0, 196636, 0, 0, 196637, 0, 0, 196638, 0, 0, 196639, 0, 0, 196640, 0, 0, 196641, 0, 0, 196642, 0, 0, 196643, 0, 0, 196644, 0, 0, 196645, 0, 0, 196646, 0, 0, 196670, 0, 0, 262182, 0, 0, 262206, 0, 0, 327718, 0, 0, 327742, 0, 0, 393254, 0, 0, 393278, 0, 0, 458790, 0, 0, 458814, 0, 0, 524326, 0, 0, 524350, 0, 0, 589862, 0, 0, 589886, 0, 0, 655398, 0, 0, 655422, 0, 0, 720934, 0, 0, 720958, 0, 0, 786470, 0, 0, 786494, 0, 0, 852006, 0, 0, 852007, 0, 0, 852008, 0, 0, 852009, 0, 0, 852010, 0, 0, 852011, 0, 0, 852012, 0, 0, 852013, 0, 0, 852014, 0, 0, 852015, 0, 0, 852016, 0, 0, 852017, 0, 0, 852018, 0, 0, 852019, 0, 0, 852020, 0, 0, 852021, 0, 0, 852022, 0, 0, 852023, 0, 0, 852024, 0, 0, 852025, 0, 0, 852026, 0, 0, 852027, 0, 0, 852028, 0, 0, 852029, 0, 0, 852030, 0, 0 )
 
+[node name="Teleporter" parent="." index="2"]
+position = Vector2( 1520.78, -533.282 )
+
 [node name="Flashlight" type="Sprite" parent="." index="3"]
 position = Vector2( 801.802, 0 )
 texture = ExtResource( 3 )
+hframes = 2
 
 [node name="FlashlightPickupArea" type="Area2D" parent="Flashlight" index="0"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flashlight/FlashlightPickupArea" index="0"]
+position = Vector2( -1.98883, -0.628046 )
 shape = SubResource( 1 )
+
+[node name="HiddenEnemies" type="Node" parent="." index="4"]
+
+[node name="Position2D" type="Position2D" parent="HiddenEnemies" index="0"]
+position = Vector2( 760.143, -40.2692 )
+
+[node name="Position2D2" type="Position2D" parent="HiddenEnemies" index="1"]
+position = Vector2( 792.574, -41.1958 )
+
+[node name="Position2D3" type="Position2D" parent="HiddenEnemies" index="2"]
+position = Vector2( 827.321, -41.6591 )
+
+[node name="Position2D4" type="Position2D" parent="HiddenEnemies" index="3"]
+position = Vector2( 852.339, -37.9527 )
+
+[node name="Position2D5" type="Position2D" parent="HiddenEnemies" index="4"]
+position = Vector2( 851.875, -15.7147 )
+
+[node name="Position2D6" type="Position2D" parent="HiddenEnemies" index="5"]
+position = Vector2( 851.412, 8.83979 )
+
+[node name="Position2D7" type="Position2D" parent="HiddenEnemies" index="6"]
+position = Vector2( 827.321, 34.7842 )
+
+[node name="Position2D8" type="Position2D" parent="HiddenEnemies" index="7"]
+position = Vector2( 850.022, 36.174 )
+
+[node name="Position2D9" type="Position2D" parent="HiddenEnemies" index="8"]
+position = Vector2( 802.303, 34.3209 )
+
+[node name="Position2D10" type="Position2D" parent="HiddenEnemies" index="9"]
+position = Vector2( 772.189, 35.2474 )
+
+[node name="Position2D11" type="Position2D" parent="HiddenEnemies" index="10"]
+position = Vector2( 751.341, 32.931 )
+
+[node name="Position2D12" type="Position2D" parent="HiddenEnemies" index="11"]
+position = Vector2( 751.341, 8.83981 )
+
+[node name="Position2D13" type="Position2D" parent="HiddenEnemies" index="12"]
+position = Vector2( 751.341, -15.7147 )
+
+[node name="Position2D14" type="Position2D" parent="HiddenEnemies" index="13"]
+position = Vector2( 778.212, -61.5806 )
+
+[node name="Position2D15" type="Position2D" parent="HiddenEnemies" index="14"]
+position = Vector2( 812.032, -62.0439 )
+
+[node name="Position2D16" type="Position2D" parent="HiddenEnemies" index="15"]
+position = Vector2( 856.971, -64.3604 )
+
+[node name="Position2D17" type="Position2D" parent="HiddenEnemies" index="16"]
+position = Vector2( 880.599, -28.6869 )
+
+[node name="Position2D18" type="Position2D" parent="HiddenEnemies" index="17"]
+position = Vector2( 880.136, 7.91322 )
+
+[node name="Position2D19" type="Position2D" parent="HiddenEnemies" index="18"]
+position = Vector2( 882.452, 42.1968 )
+
+[node name="Position2D20" type="Position2D" parent="HiddenEnemies" index="19"]
+position = Vector2( 856.045, 67.2146 )
+
+[node name="Position2D21" type="Position2D" parent="HiddenEnemies" index="20"]
+position = Vector2( 824.541, 69.5311 )
+
+[node name="Position2D22" type="Position2D" parent="HiddenEnemies" index="21"]
+position = Vector2( 787.477, 70.4577 )
+
+[node name="Position2D23" type="Position2D" parent="HiddenEnemies" index="22"]
+position = Vector2( 749.024, 66.7513 )
+
+[node name="Position2D24" type="Position2D" parent="HiddenEnemies" index="23"]
+position = Vector2( 722.153, 44.05 )
+
+[node name="Position2D25" type="Position2D" parent="HiddenEnemies" index="24"]
+position = Vector2( 719.837, 5.13348 )
+
+[node name="Position2D26" type="Position2D" parent="HiddenEnemies" index="25"]
+position = Vector2( 719.837, -25.4438 )
+
+[node name="Position2D27" type="Position2D" parent="HiddenEnemies" index="26"]
+position = Vector2( 734.662, -54.6312 )
+
+[node name="SpookPlayer" type="AudioStreamPlayer" parent="." index="5"]
+stream = ExtResource( 4 )
+
+[node name="PickupPlayer" type="AudioStreamPlayer" parent="." index="6"]
+stream = ExtResource( 5 )
 [connection signal="body_entered" from="Flashlight/FlashlightPickupArea" to="." method="_on_FlashlightPickupArea_body_entered"]

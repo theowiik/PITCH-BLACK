@@ -30,6 +30,9 @@ func get_input_vector() -> Vector2:
 
 	return vec.normalized()
 
+func turn_on_flashlight() -> void:
+	$FlashlightHolder/Flashlight.on()
+
 func play_if_moving(vector: Vector2) -> void:
 	if vector.length() <= 0: return
 
@@ -38,6 +41,10 @@ func play_if_moving(vector: Vector2) -> void:
 		$WalkPlayer.pitch_scale = pitch
 		$WalkPlayer.play()
 		$DelayBetweenWalks.start()
+
+func equip_flashlight() -> void:
+	var flashlight = load("res://scenes/Flashlight.tscn")
+	$FlashlightHolder.add_child(flashlight.instance())
 
 func _physics_process(_delta: float) -> void:
 	if not controlling: return

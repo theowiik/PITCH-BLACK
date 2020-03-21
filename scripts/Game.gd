@@ -3,20 +3,31 @@ extends Node2D
 signal cutscene_finished
 
 const rocket: PackedScene = preload("res://scenes/Rocket.tscn")
-onready var player: Actor = get_node("Player")
+onready var player: Player = get_node("Player")
 onready var camera: Camera2D = get_node("Camera")
 onready var cutscene: Cutscene = get_node("Cutscene")
 onready var hud: HUD = $HUD
 
 var current_level: int = 0
 var levels = [
-	"res://scenes/levels/Level0.tscn",
-	"res://scenes/levels/Level1.tscn",
-	"res://scenes/levels/Level2.tscn",
-	"res://scenes/levels/Level3.tscn",
-	"res://scenes/levels/Level4.tscn",
+	#"res://scenes/levels/Level0.tscn",
+	#"res://scenes/levels/Level1.tscn",
+	#"res://scenes/levels/Level2.tscn",
+	#"res://scenes/levels/Level3.tscn",
+	#"res://scenes/levels/Level4.tscn",
 	"res://scenes/levels/Ending.tscn"
 ]
+
+func end_screen() -> void:
+	get_tree().change_scene("res://scenes/EndScreen.tscn")
+
+func turn_on_flashlight() -> void:
+	player.turn_on_flashlight()
+
+func flashlight_picked_up() -> void:
+	player.controlling = false
+	$Music.stop()
+	player.equip_flashlight()
 
 func _ready() -> void:
 	randomize()
@@ -142,16 +153,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func next_room() -> void:
 	current_level += 1
-
-	var finished = current_level >= levels.size()
-
-	if finished:
-		end_screen()
-	else:
-		reset_room()
-
-func end_screen() -> void:
-	$Cutscene.visible = true
+	reset_room()
 
 func on_shoot(projectile: Projectile) -> void:
 	add_child(projectile)
