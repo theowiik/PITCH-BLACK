@@ -32,8 +32,6 @@ func move_loop(delta: float) -> void:
 	var desired_dir: Vector2 = dir_to_mouse()
 	var angle_to_mouse: float = dir_vector.angle_to(desired_dir)
 	dir_vector = dir_vector.rotated(angle_to_mouse * rotation_speed).normalized()
-	print(dir_vector)
-	#dir_vector = (dir_vector + desired_dir * rotation_speed).normalized()
 	global_position += dir_vector * speed * delta
 
 func rotation_loop() -> void:
