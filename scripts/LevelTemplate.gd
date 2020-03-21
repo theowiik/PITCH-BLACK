@@ -31,3 +31,6 @@ func get_enemies() -> Array:
 		if child is Enemy:
 			enemies.append(child)
 	return enemies
+
+func is_end() -> bool:
+	return false

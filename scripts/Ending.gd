@@ -19,3 +19,6 @@ func _on_FlashlightPickupArea_body_entered(body):
 	yield(get_tree().create_timer(2), "timeout")
 
 	get_parent().get_parent().end_screen()
+
+func is_end() -> bool:
+	return true

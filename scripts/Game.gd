@@ -10,11 +10,11 @@ onready var hud: HUD = $HUD
 
 var current_level: int = 0
 var levels = [
-	#"res://scenes/levels/Level0.tscn",
-	#"res://scenes/levels/Level1.tscn",
-	#"res://scenes/levels/Level2.tscn",
-	#"res://scenes/levels/Level3.tscn",
-	#"res://scenes/levels/Level4.tscn",
+	"res://scenes/levels/Level0.tscn",
+	"res://scenes/levels/Level1.tscn",
+	"res://scenes/levels/Level2.tscn",
+	"res://scenes/levels/Level3.tscn",
+	"res://scenes/levels/Level4.tscn",
 	"res://scenes/levels/Ending.tscn"
 ]
 
@@ -64,7 +64,7 @@ func scripted_death() -> void:
 
 func intro() -> void:
 	$Transition/ColorRect.color = Color(0, 0, 0)
-	yield(get_tree().create_timer(0), "timeout")
+	yield(get_tree().create_timer(3), "timeout")
 	cutscene.show()
 
 	cutscene.display("...")
@@ -130,6 +130,11 @@ func reset_room() -> void:
 	hud.total_enemies = instance.get_total_enemies()
 	hud.update()
 	hud.set_visible(GameMeta.scripted_death)
+
+	if instance.is_end():
+		hud.set_visible(false)
+		player.can_shoot = false
+		player.can_shoot_rockets = false
 
 	# Fade and continue process
 	camera.smoothing_enabled = false
