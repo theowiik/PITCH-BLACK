@@ -1,3 +1,17 @@
-<H1 style="text-align: center">PITCH-BLACK</H1>
-<img src="readme/dude.png" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
-<h2 style="text-align: center">A game mode for the Godot Wild Jam #19</h2>
+<h1 align="center">PITCH-BLACK</h1>
+
+<p align="center">
+    <img width="460" src="readme/dude.png">
+</p>
+
+<p align="center" style="font-size: 32px">
+    A game mode for the Godot Wild Jam #19
+</p>
+
+<p align="center" style="font-size: 32px">
+    <a href="">
+        Play here (link coming)
+    </a>
+</p>
+
+:warning: May contain game jam quality code :flushed:
