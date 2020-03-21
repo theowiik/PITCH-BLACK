@@ -106,7 +106,9 @@ func add_death_player() -> void:
 		d_player.global_position = global_position
 
 func _on_DetectionArea_body_entered(body):
-	print("entered: " + body.name)
+	if not $DetectionDelay.is_stopped():
+		return
+
 	if body is Player:
 		chasing = true
 

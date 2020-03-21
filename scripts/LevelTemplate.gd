@@ -7,6 +7,9 @@ var total_enemies: int = 0
 func _ready():
 	total_enemies = get_enemies().size()
 
+func get_rockets() -> int:
+	return 3
+
 func get_teleporter() -> Teleporter:
 	var teleporter: Teleporter = $Teleporter
 	return teleporter

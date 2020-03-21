@@ -15,6 +15,7 @@ var levels = [
 	"res://scenes/levels/Level2.tscn",
 	"res://scenes/levels/Level3.tscn",
 	"res://scenes/levels/Level4.tscn",
+	"res://scenes/levels/Ending.tscn"
 ]
 
 func _ready() -> void:
@@ -35,19 +36,24 @@ func _ready() -> void:
 	# Room
 	reset_room()
 
+func ending_reached() -> void:
+	player.can_shoot = false
+	player.can_shoot_rockets = false
+	hud.set_visible(false)
+
 func scripted_death() -> void:
 	player.controlling = false
 
 	yield(get_tree().create_timer(2), "timeout")
 	cutscene.show()
-	cutscene.display("who this?")
+	cutscene.display("who dis?")
 	yield(cutscene, "finished")
 	cutscene.hide()
 	emit_signal("cutscene_finished")
 
 func intro() -> void:
 	$Transition/ColorRect.color = Color(0, 0, 0)
-	yield(get_tree().create_timer(3), "timeout")
+	yield(get_tree().create_timer(0), "timeout")
 	cutscene.show()
 
 	cutscene.display("...")
@@ -68,21 +74,27 @@ func reset_room() -> void:
 	$RestartPlayer.play()
 	get_tree().paused = true
 
-	# Health
+	# Player
 	player.health = player.max_health
-	player.rockets = 3
 	player.controlling = true
 	player.can_shoot = GameMeta.scripted_death
 	player.can_shoot_rockets = GameMeta.scripted_death
 
 	# Remove current level
-	for n in $Level.get_children():
-		n.queue_free()
+	for c in $Level.get_children():
+		c.queue_free()
+
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		enemy.queue_free()
+
+	yield(get_tree().create_timer(0.5), "timeout")
 
 	# Instance scene
 	var level: PackedScene = load(levels[current_level])
 	var instance: LevelTemplate = level.instance()
 	$Level.call_deferred("add_child", instance)
+
+	player.rockets = instance.get_rockets()
 
 	# Spawn
 	player.global_position = instance.get_spawn()
@@ -102,10 +114,11 @@ func reset_room() -> void:
 	teleporter.connect("teleporter_entered", self, "next_room")
 
 	# HUD
-	hud.rockets = player.rockets
+	hud.rockets = instance.get_rockets()
 	hud.discovered = 0
 	hud.total_enemies = instance.get_total_enemies()
 	hud.update()
+	hud.set_visible(GameMeta.scripted_death)
 
 	# Fade and continue process
 	camera.smoothing_enabled = false

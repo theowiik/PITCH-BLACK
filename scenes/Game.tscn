@@ -98,6 +98,9 @@ margin_right = 120.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 9 )
 text = "top left"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HUD/HBoxContainer"]
 margin_left = 120.0

@@ -2,9 +2,9 @@ extends "res://scripts/Actor.gd"
 
 class_name Player
 
-var controlling: bool = true
-var can_shoot_rockets: bool = true
-var can_shoot: bool = true
+var controlling: bool = false
+var can_shoot_rockets: bool = false
+var can_shoot: bool = false
 var rockets: int = 3
 const projectile: PackedScene = preload("res://scenes/Projectile.tscn")
 
@@ -12,6 +12,8 @@ signal shoot
 signal rocket_added
 
 func take_damage(damage: int) -> void:
+	if health <= 0: return # Already dead
+	health -= damage
 	anim_player.play("death")
 	controlling = false
 	anim_player.play("death")
@@ -55,7 +57,8 @@ func _physics_process(_delta: float) -> void:
 
 	# Rocket
 	if Input.is_action_just_pressed("add_rocket") and can_shoot_rockets:
-		rockets -= 1
-		controlling = false
-		emit_signal("rocket_added")
-		get_tree().set_input_as_handled()
+		if rockets > 0:
+			rockets -= 1
+			controlling = false
+			emit_signal("rocket_added")
+			get_tree().set_input_as_handled()

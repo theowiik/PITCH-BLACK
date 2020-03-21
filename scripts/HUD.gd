@@ -23,10 +23,10 @@ func decrease_rockets() -> void:
 
 func update() -> void:
 	update_enemies()
-	update_enemies()
+	update_rockets()
 
 func update_rockets() -> void:
-	$HBoxContainer/VBoxContainer/Rockets.text = str(rockets)
+	$HBoxContainer/VBoxContainer/Rockets.text = str(rockets) + " rockets"
 
 func update_enemies() -> void:
 	$HBoxContainer/VBoxContainer2/Enemies.text = str(discovered) + "/" + str(total_enemies)

@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/sfx/discover3.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/sfx/discover2.wav" type="AudioStream" id=6]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 resource_name = "chocked"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -22,7 +22,7 @@ tracks/0/keys = {
 "values": [ 10 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 resource_name = "down"
 length = 0.4
 loop = true
@@ -39,7 +39,7 @@ tracks/0/keys = {
 "values": [ 8, 9 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -54,7 +54,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "left"
 length = 0.4
 tracks/0/type = "value"
@@ -70,7 +70,7 @@ tracks/0/keys = {
 "values": [ 6, 7 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 resource_name = "right"
 length = 0.4
 tracks/0/type = "value"
@@ -86,7 +86,7 @@ tracks/0/keys = {
 "values": [ 4, 5 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=6]
 resource_name = "up"
 length = 0.4
 tracks/0/type = "value"
@@ -102,10 +102,10 @@ tracks/0/keys = {
 "values": [ 2, 3 ]
 }
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=7]
 radius = 69.52
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=8]
 radius = 12.5999
 
 [node name="Enemy" instance=ExtResource( 1 )]
@@ -115,7 +115,7 @@ script = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 3 )
-frame = 4
+frame = 10
 
 [node name="RevealTime" type="Timer" parent="." index="2"]
 one_shot = true
@@ -134,12 +134,12 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" parent="." index="4"]
-anims/chocked = SubResource( 4 )
-anims/down = SubResource( 5 )
-anims/idle = SubResource( 6 )
-anims/left = SubResource( 7 )
-anims/right = SubResource( 8 )
-anims/up = SubResource( 9 )
+anims/chocked = SubResource( 1 )
+anims/down = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/left = SubResource( 4 )
+anims/right = SubResource( 5 )
+anims/up = SubResource( 6 )
 
 [node name="Navigation2D" type="Navigation2D" parent="." index="5"]
 
@@ -151,13 +151,13 @@ one_shot = true
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0"]
-shape = SubResource( 2 )
+shape = SubResource( 7 )
 
 [node name="DamageArea" type="Area2D" parent="." index="8"]
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]
-shape = SubResource( 3 )
+shape = SubResource( 8 )
 
 [node name="IndicatorTimer" type="Timer" parent="." index="9"]
 wait_time = 0.25
@@ -171,6 +171,10 @@ stream = ExtResource( 6 )
 
 [node name="DiscoverPlayer2" type="AudioStreamPlayer2D" parent="." index="14"]
 stream = ExtResource( 5 )
+
+[node name="DetectionDelay" type="Timer" parent="." index="17"]
+one_shot = true
+autostart = true
 [connection signal="timeout" from="RevealTime" to="." method="_on_RevealTime_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_DamageArea_body_entered"]
