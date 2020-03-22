@@ -76,7 +76,8 @@ _global_script_class_icons={
 
 config/name="PITCH-BLACK"
 run/main_scene="res://scenes/Menu.tscn"
-config/icon="res://icon.png"
+boot_splash/image="res://assets/icon_large.png"
+config/icon="res://assets/icon_small.png"
 
 [autoload]
 
