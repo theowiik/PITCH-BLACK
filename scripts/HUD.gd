@@ -8,10 +8,10 @@ var rockets: int = 0
 
 func _ready():
 	set_visible(false)
+	$HBoxContainer/VBoxContainer2/Enemies.visible = false
 
 func set_visible(s: bool) -> void:
 	$HBoxContainer/VBoxContainer/Rockets.visible = s
-	$HBoxContainer/VBoxContainer2/Enemies.visible = s
 
 func decrease_discovered() -> void:
 	discovered -= 1

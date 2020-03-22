@@ -55,7 +55,7 @@ func ending_reached() -> void:
 func scripted_death() -> void:
 	player.controlling = false
 
-	yield(get_tree().create_timer(2), "timeout")
+	yield(get_tree().create_timer(0), "timeout")
 	cutscene.show()
 	cutscene.display("who dis?")
 	yield(cutscene, "finished")
@@ -64,7 +64,7 @@ func scripted_death() -> void:
 
 func intro() -> void:
 	$Transition/ColorRect.color = Color(0, 0, 0)
-	yield(get_tree().create_timer(3), "timeout")
+	yield(get_tree().create_timer(0), "timeout")
 	cutscene.show()
 
 	cutscene.display("...")
@@ -91,12 +91,20 @@ func reset_room() -> void:
 	player.can_shoot = GameMeta.scripted_death
 	player.can_shoot_rockets = GameMeta.scripted_death
 
+	# Camera
+	set_normal_zoom()
+	var cam_parent = camera.get_parent()
+	if cam_parent != null:
+		cam_parent.remove_child(camera)
+	player.add_child(camera)
+
+	# Remove possibly alive rocket
+	for rocket in get_tree().get_nodes_in_group("rockets"):
+		rocket.queue_free()
+
 	# Remove current level
 	for c in $Level.get_children():
 		c.queue_free()
-
-	for enemy in get_tree().get_nodes_in_group("enemies"):
-		enemy.queue_free()
 
 	yield(get_tree().create_timer(0.5), "timeout")
 
@@ -137,8 +145,6 @@ func reset_room() -> void:
 		player.can_shoot_rockets = false
 
 	# Fade and continue process
-	camera.smoothing_enabled = false
-	camera.global_position = instance.get_spawn()
 	get_tree().paused = false
 	$Transition.fade_out()
 
@@ -149,12 +155,6 @@ func on_request_path(from: Vector2, to: Vector2, who: Enemy) -> void:
 	var level: LevelTemplate = $Level.get_child(0)
 	var nav: Navigation2D = level.get_navigation()
 	who.path = nav.get_simple_path(from, to)
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("debug"):
-		next_room()
-	if event.is_action_pressed("debug2"):
-		reset_room()
 
 func next_room() -> void:
 	current_level += 1

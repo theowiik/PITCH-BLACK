@@ -35,23 +35,24 @@ one_shot = true
 autostart = true
 
 [node name="RocketInfo" type="RichTextLabel" parent="." index="6"]
-margin_left = -44.8987
-margin_top = -125.137
-margin_right = 285.101
-margin_bottom = -7.13676
+margin_left = -27.6251
+margin_top = -60.8398
+margin_right = 302.375
+margin_bottom = 57.1604
 custom_fonts/normal_font = ExtResource( 4 )
-text = "Press the RIGHT mouse button to fire a rocket that can detect enemies. Press again to go back"
+text = "RIGHT Click:
+Detect enemies"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="KnifeInfo" type="RichTextLabel" parent="." index="7"]
-margin_left = -47.9044
-margin_top = 84.943
-margin_right = 129.096
-margin_bottom = 151.943
+margin_left = -27.7285
+margin_top = 42.3351
+margin_right = 149.272
+margin_bottom = 109.335
 custom_fonts/normal_font = ExtResource( 4 )
-text = "Press the LEFT mouse button to throw a knife"
+text = "LEFT Click: Throw knife"
 __meta__ = {
 "_edit_use_anchors_": false
 }

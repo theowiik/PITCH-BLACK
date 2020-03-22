@@ -13,6 +13,7 @@ signal rocket_added
 
 func take_damage(damage: int) -> void:
 	if health <= 0: return # Already dead
+	if not GameMeta.player_can_take_damage: return
 	health -= damage
 	anim_player.play("death")
 	controlling = false

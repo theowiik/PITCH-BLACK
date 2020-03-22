@@ -11,6 +11,7 @@ const smoke: PackedScene = preload("res://scenes/Smoke.tscn")
 onready var smoke_delay: Timer = $Timer
 
 func _ready():
+	add_to_group("rockets")
 	dir_vector = dir_to_mouse()
 
 func _physics_process(delta: float) -> void:
