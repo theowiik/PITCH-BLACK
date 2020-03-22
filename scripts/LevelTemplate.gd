@@ -3,12 +3,13 @@ extends Node2D
 class_name LevelTemplate
 
 var total_enemies: int = 0
+var rockets: int = 3
 
 func _ready():
 	total_enemies = get_enemies().size()
 
 func get_rockets() -> int:
-	return 3
+	return rockets
 
 func get_teleporter() -> Teleporter:
 	var teleporter: Teleporter = $Teleporter

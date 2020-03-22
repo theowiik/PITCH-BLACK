@@ -2,6 +2,9 @@ extends "res://scripts/LevelTemplate.gd"
 
 var triggered: bool = false
 
+func _init():
+	rockets = 10
+
 func _ready():
 	$RocketInfo.visible = GameMeta.scripted_death
 	$KnifeInfo.visible = GameMeta.scripted_death
