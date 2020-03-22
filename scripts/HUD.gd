@@ -11,7 +11,11 @@ func _ready():
 	$HBoxContainer/VBoxContainer2/Enemies.visible = false
 
 func set_visible(s: bool) -> void:
-	$HBoxContainer/VBoxContainer/Rockets.visible = s
+	if s:
+		update_rockets()
+	else:
+		var label: Label = $HBoxContainer/VBoxContainer/Rockets
+		label.text = ""
 
 func decrease_discovered() -> void:
 	discovered -= 1
