@@ -16,6 +16,7 @@ onready var walk_indicator: PackedScene = preload("res://scenes/Smoke.tscn")
 
 func _ready():
 	add_to_group("enemies")
+	movement_speed = 120
 	$Sprite.visible = false
 
 func _physics_process(delta):

@@ -6,7 +6,7 @@ signal died
 
 var max_health: float = 100
 var health: float = max_health
-const movement_speed: int = 100
+var movement_speed: int = 100
 onready var anim_player: AnimationPlayer = get_node("AnimationPlayer")
 const death_effect: PackedScene = preload("res://scenes/DeathEffect.tscn")
 
