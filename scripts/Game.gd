@@ -11,10 +11,11 @@ onready var hud: HUD = $HUD
 var current_level: int = 0
 var levels = [
 	"res://scenes/levels/Level0.tscn",
-	"res://scenes/levels/Level1.tscn",
-	"res://scenes/levels/Level2.tscn",
-	"res://scenes/levels/Level3.tscn",
-	"res://scenes/levels/Level4.tscn",
+	#"res://scenes/levels/Level1.tscn",
+	#"res://scenes/levels/Level2.tscn",
+	#"res://scenes/levels/Level3.tscn",
+	#"res://scenes/levels/Level4.tscn",
+	"res://scenes/levels/Level5.tscn",
 	"res://scenes/levels/Ending.tscn"
 ]
 
